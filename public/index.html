@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Website Health Monitor</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="anomaly-alert" class="alert hidden"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Website Bodyguard - Live Health Monitor</h1>
+        </div>
+        <div class="input-form">
+            <input type="text" id="url-input" placeholder="Enter website URL (e.g., https://www.google.com)">
+            <button id="monitor-btn">Start Monitoring</button>
+        </div>
+        <div id="dashboard" class="hidden">
+            <div class="status-panel">
+                <div class="status-box" id="current-status">
+                    <h2>Current Status</h2>
+                    <p>--</p>
+                </div>
+                <div class="status-box" id="current-target">
+                    <h2>Currently Monitoring</h2>
+                    <p>--</p>
+                </div>
+                 <div class="status-box" id="response-time">
+                    <h2>Response Time</h2>
+                    <p>--</p>
+                </div>
+            </div>
+            <div class="dashboard-main">
+                <div class="chart-container">
+                    <h3>Live Response Time (ms)</h3>
+                    <canvas id="response-chart"></canvas>
+                </div>
+                <div class="log-feed">
+                    <h3>Live Event Feed</h3>
+                    <div id="logs"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
