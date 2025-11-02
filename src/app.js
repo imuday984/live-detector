@@ -22,7 +22,7 @@ mongoose.connect(MONGO_URI).then(() => console.log('Successfully connected to Mo
 
 // --- PUSH NOTIFICATION SETUP ---
 // Apne Notepad se keys yahan daal
-const publicVapidKey = 'TERA_PUBLIC_KEY_YAHA_DAALBMy1WKMwzIHKf7NifOuRsvFrTfJLlaR0ErQZpXTRp_fJh_AKBV_sjg1mXpEV7Vm3UBcbpMgfrZDB5l7bRPmXBfw'; 
+const publicVapidKey = 'BMy1WKMwzIHKf7NifOuRsvFrTfJLlaR0ErQZpXTRp_fJh_AKBV_sjg1mXpEV7Vm3UBcbpMgfrZDB5l7bRPmXBfw'; 
 const privateVapidKey = 'yqqBPPwajUge8_LWX2MoG4FVN3ipHHHp8zHyU-EiWV4';
 let pushSubscription = null; // Browser ki details yahan save hogi
 webpush.setVapidDetails('mailto:udayvardhan.998@gmail.com', publicVapidKey, privateVapidKey);
