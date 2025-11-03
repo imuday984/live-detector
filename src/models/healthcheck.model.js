@@ -1,4 +1,4 @@
-// src/models/healthcheck.model.js
+
 const mongoose = require('mongoose');
 
 const healthCheckSchema = new mongoose.Schema({

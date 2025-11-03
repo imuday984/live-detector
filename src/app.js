@@ -1,4 +1,4 @@
-// src/app.js
+
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
@@ -6,38 +6,37 @@ const path = require('path');
 const http = require('http');
 const { Server } = require("socket.io");
 const axios = require('axios');
-const webpush = require('web-push'); // <-- Naya auzaar
+const webpush = require('web-push'); 
 const HealthCheck = require('./models/healthcheck.model.js');
 
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server);
 
-// Ye Render ke secret environment variable se aayega
+
 const MONGO_URI = process.env.MONGO_URI; 
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 mongoose.connect(MONGO_URI).then(() => console.log('Successfully connected to MongoDB...'));
 
-// --- PUSH NOTIFICATION SETUP ---
-// Apne Notepad se keys yahan daal
+
 const publicVapidKey = 'BMy1WKMwzIHKf7NifOuRsvFrTfJLlaR0ErQZpXTRp_fJh_AKBV_sjg1mXpEV7Vm3UBcbpMgfrZDB5l7bRPmXBfw'; 
 const privateVapidKey = 'yqqBPPwajUge8_LWX2MoG4FVN3ipHHHp8zHyU-EiWV4';
-let pushSubscription = null; // Browser ki details yahan save hogi
+let pushSubscription = null; 
 webpush.setVapidDetails('mailto:udayvardhan.998@gmail.com', publicVapidKey, privateVapidKey);
 
-// Endpoint jo browser ko public key dega
+
 app.get('/vapid-public-key', (req, res) => res.send(publicVapidKey));
 
-// Endpoint jahan browser apni subscription details bhejega
+
 app.post('/subscribe', (req, res) => {
     pushSubscription = req.body;
     res.status(201).json({});
     console.log("Browser subscribed for push notifications.");
 });
 
-// Naya function jo notification bhejega
+
 async function sendPushNotification(targetUrl) {
     if (!pushSubscription) {
         console.log("No browser subscribed, skipping push notification.");
@@ -55,8 +54,7 @@ async function sendPushNotification(targetUrl) {
     }
 }
 
-// BAAKI SAARE API aur LOGIC (start-monitoring, polling, etc.) SAME RAHENGE
-// SIRF Anomaly waale block mein SMS ki jagah Push Notification use karenge.
+
 
 let currentTarget = null, checkInterval = null, lastCheckedTimestamp = new Date();
 
